@@ -1,0 +1,6 @@
+authors = ["Alexandre Brilhante <alexandre.brilhante@gmail.com>"]
+name = "Cryptowatch"
+uuid = "1b0507fe-cf3e-11e8-1c46-25fa1bebfb9e"
+version = "0.1.0"
+
+[deps]
