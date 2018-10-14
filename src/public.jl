@@ -133,6 +133,12 @@ function getorderbook(exchange::String, pair::String)
     return read(s)
 end
 
+function getorderbook(exchange::String, pair::String, limit::Int64, depth::Float64, span::Float64)
+    r = get("$URL/markets/$exchange/$pair/orderbook?limit=$limit&depth=$depth&span=$span")
+    s = String(r.body)
+    return read(s)
+end
+
 """
 Returns a market's OHLC candlestick data.
 Returns data as lists of lists of numbers for each time period integer.
