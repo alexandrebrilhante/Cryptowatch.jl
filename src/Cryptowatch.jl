@@ -5,12 +5,14 @@ module Cryptowatch
     import HTTP: get
     import JSON2: read
 
-    export assets,
-           exchanges,
-           markets,
-           prices,
-           orderbook,
-           ohlc
+    export getassets,
+           getpairs,
+           getexchanges,
+           getmarkets,
+           getprices,
+           getsummary,
+           getorderbook,
+           getohlc
 
     include("public.jl")
 
