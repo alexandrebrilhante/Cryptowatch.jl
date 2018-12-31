@@ -9,23 +9,63 @@ Julia wrapper for the Cryptowatch REST API.
 ```
 
 ## Usage
+
 ```julia
 julia> using Cryptowatch
 
 julia> names(Cryptowatch)
 9-element Array{Symbol,1}:
  :Cryptowatch
- :getassets
- :getexchanges
- :getmarkets
- :getohlc
- :getorderbook
- :getpairs
- :getprices
- :getsummary
+ :assets
+ :exchanges
+ :markets
+ :ohlc
+ :orderbook
+ :pairs
+ :prices
+ :summary
 
-julia> getorderbook("kraken", "btcusd")
-(result = (asks = Any[Any[6223.6, 0.149], Any[6224.4, 0.182], Any[6224.9, 0.3], Any[6225, 4], Any[6225.8, 0.059], Any[6227, 3], Any[6227.3, 1], Any[6228.1, 0.372], Any[6228.4, 30], Any[6230, 4]  …  Any[6340, 5.45], Any[6340.3, 8.769], Any[6344.9, 0.009], Any[6345, 0.581], Any[6348, 0.513], Any[6349, 1.718], Any[6349.8, 2.5], Any[6350, 26.054], Any[6354, 6.063], Any[6359.9, 0.012]], bids = Any[Any[6219.9, 0.5], Any[6219.8, 1], Any[6219.5, 0.169], Any[6218.9, 2], Any[6218.4, 4], Any[6218.2, 2.569], Any[6217.8, 0.372], Any[6217.5, 6], Any[6217.3, 0.208], Any[6217.1, 5]  …  Any[6120.4, 0.505], Any[6120, 1.2], Any[6117.1, 7.4], Any[6117, 0.2], Any[6115, 0.003], Any[6111.1, 8.67], Any[6111, 0.8], Any[6110.3, 0.001], Any[6110, 0.638], Any[6108.5, 5]], seqNum = 171429), allowance = (cost = 368177, remaining = 7982126179))
+julia> assets()
+441×5 DataFrame
+│ Row │ id    │ symbol │ name               │ fiat  │ route                                 │
+│     │ Int64 │ String │ String             │ Bool  │ String                                │
+├─────┼───────┼────────┼────────────────────┼───────┼───────────────────────────────────────┤
+│ 1   │ 404   │ 1st    │ FirstBlood         │ false │ https://api.cryptowat.ch/assets/1st   │
+│ 2   │ 201   │ ICX    │ ICON               │ false │ https://api.cryptowat.ch/assets/ICX   │
+│ 3   │ 517   │ abyss  │ The Abyss          │ false │ https://api.cryptowat.ch/assets/abyss │
+│ 4   │ 502   │ acat   │ Alphacat           │ false │ https://api.cryptowat.ch/assets/acat  │
+│ 5   │ 484   │ act    │ Achain             │ false │ https://api.cryptowat.ch/assets/act   │
+│ 6   │ 166   │ ada    │ Cardano            │ false │ https://api.cryptowat.ch/assets/ada   │
+│ 7   │ 695   │ adh    │ AdHive             │ false │ https://api.cryptowat.ch/assets/adh   │
+│ 8   │ 316   │ adt    │ adToken            │ false │ https://api.cryptowat.ch/assets/adt   │
+│ 9   │ 286   │ adx    │ AdEx               │ false │ https://api.cryptowat.ch/assets/adx   │
+│ 10  │ 409   │ ae     │ Aeternity          │ false │ https://api.cryptowat.ch/assets/ae    │
+│ 11  │ 311   │ aeon   │ Aeon               │ false │ https://api.cryptowat.ch/assets/aeon  │
+│ 12  │ 291   │ agi    │ SingularityNET     │ false │ https://api.cryptowat.ch/assets/agi   │
+│ 13  │ 521   │ aion   │ Aion               │ false │ https://api.cryptowat.ch/assets/aion  │
+│ 14  │ 434   │ amb    │ Ambrosus           │ false │ https://api.cryptowat.ch/assets/amb   │
+│ 15  │ 112   │ amp    │ Synereo            │ false │ https://api.cryptowat.ch/assets/amp   │
+│ 16  │ 270   │ ant    │ Aragon             │ false │ https://api.cryptowat.ch/assets/ant   │
+│ 17  │ 522   │ appc   │ AppCoins           │ false │ https://api.cryptowat.ch/assets/appc  │
+⋮
+│ 424 │ 110   │ xrp    │ Ripple             │ false │ https://api.cryptowat.ch/assets/xrp   │
+│ 425 │ 29    │ xtz    │ Tezos              │ false │ https://api.cryptowat.ch/assets/xtz   │
+│ 426 │ 26    │ xvc    │ Vcash              │ false │ https://api.cryptowat.ch/assets/xvc   │
+│ 427 │ 170   │ xvg    │ Verge              │ false │ https://api.cryptowat.ch/assets/xvg   │
+│ 428 │ 310   │ xwc    │ WhiteCoin          │ false │ https://api.cryptowat.ch/assets/xwc   │
+│ 429 │ 243   │ xzc    │ ZCoin              │ false │ https://api.cryptowat.ch/assets/xzc   │
+│ 430 │ 925   │ yeed   │ YGGDRASH           │ false │ https://api.cryptowat.ch/assets/yeed  │
+│ 431 │ 439   │ yoyow  │ YOYOW              │ false │ https://api.cryptowat.ch/assets/yoyow │
+│ 432 │ 57    │ zar    │ South African rand │ true  │ https://api.cryptowat.ch/assets/zar   │
+│ 433 │ 294   │ zcl    │ ZClassic           │ false │ https://api.cryptowat.ch/assets/zcl   │
+│ 434 │ 681   │ zcn    │ 0chain             │ false │ https://api.cryptowat.ch/assets/zcn   │
+│ 435 │ 23    │ zec    │ Zcash              │ false │ https://api.cryptowat.ch/assets/zec   │
+│ 436 │ 36    │ zen    │ ZenCash            │ false │ https://api.cryptowat.ch/assets/zen   │
+│ 437 │ 301   │ zil    │ Zilliqa            │ false │ https://api.cryptowat.ch/assets/zil   │
+│ 438 │ 512   │ zpt    │ Zeepin             │ false │ https://api.cryptowat.ch/assets/zpt   │
+│ 439 │ 545   │ zrc    │ ZrCoin             │ false │ https://api.cryptowat.ch/assets/zrc   │
+│ 440 │ 54    │ zrx    │ 0x                 │ false │ https://api.cryptowat.ch/assets/zrx   │
+│ 441 │ 443   │ zsc    │ Zeusshield         │ false │ https://api.cryptowat.ch/assets/zsc   │
 ```
 
 ## Documentation
