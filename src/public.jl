@@ -1,7 +1,7 @@
 """
 Returns all assets (in no particular order).
 """
-function getassets()
+function assets()
     r = get("$URL/assets")
     s = String(r.body)
     res = read(s)
@@ -11,7 +11,7 @@ end
 """
 Returns a single asset. Lists all markets which have this asset as a base or quote.
 """
-function getassets(symbol::String)
+function assets(symbol::String)
     r = get("$URL/assets/$symbol")
     s = String(r.body)
     return read(s)
@@ -20,7 +20,7 @@ end
 """
 Returns all pairs (in no particular order).
 """
-function getpairs()
+function pairs()
     r = get("$URL/pairs")
     s = String(r.body)
     return read(s)
@@ -29,7 +29,7 @@ end
 """
 Returns a single pair. Lists all markets for this pair.
 """
-function getpairs(symbol::String)
+function pairs(symbol::String)
     r = get("$URL/pairs/$symbol")
     s = String(r.body)
     return read(s)
@@ -38,7 +38,7 @@ end
 """
 Returns a list of all supported exchanges.
 """
-function getexchanges()
+function exchanges()
     r = get("$URL/exchanges")
     s = String(r.body)
     res = read(s)
@@ -48,7 +48,7 @@ end
 """
 Returns a single exchange with associated routes.
 """
-function getexchanges(exchange::String)
+function exchanges(exchange::String)
     r = get("$URL/exchanges/$exchange")
     s = String(r.body)
     return read(s)
@@ -57,7 +57,7 @@ end
 """
 Returns a list of all supported markets.
 """
-function getmarkets()
+function markets()
     r = get("$URL/markets")
     s = String(r.body)
     res = read(s)
@@ -67,7 +67,7 @@ end
 """
 Return supported markets for only a specific exchange.
 """
-function getmarkets(exchange::String)
+function markets(exchange::String)
     r = get("$URL/markets/$exchange")
     s = String(r.body)
     return read(s)
@@ -76,7 +76,7 @@ end
 """
 Returns a single market with associated routes.
 """
-function getmarkets(exchange::String, pair::String)
+function markets(exchange::String, pair::String)
     r = get("$URL/markets/$exchange/$pair")
     s = String(r.body)
     return read(s)
@@ -85,7 +85,7 @@ end
 """
 Returns the current price for all supported markets.
 """
-function getprices()
+function prices()
     r = get("$URL/markets/prices")
     s = String(r.body)
     return read(s)
@@ -94,7 +94,7 @@ end
 """
 Returns a market's last price.
 """
-function getprices(exchange::String, pair::String)
+function prices(exchange::String, pair::String)
     r = get("$URL/markets/$exchange/$pair/price")
     s = String(r.body)
     return read(s)
@@ -103,7 +103,7 @@ end
 """
 Returns the market summary for all supported markets.
 """
-function getsummary()
+function summary()
     r = get("$URL/markets/summaries")
     s = String(r.body)
     return read(s)
@@ -112,7 +112,7 @@ end
 """
 Returns a market's last price as well as other stats based on a 24-hour sliding window.
 """
-function getsummary(exchange::String, pair::String)
+function summary(exchange::String, pair::String)
     r = get("$URL/markets/$exchange/$pair/summary")
     s = String(r.body)
     return read(s)
@@ -121,7 +121,7 @@ end
 """
 Returns a market's most recent trades, incrementing chronologically.
 """
-function gettrades(exchange::String, pair::String)
+function trades(exchange::String, pair::String)
     r = get("$URL/markets/$exchange/$pair/trades")
     s = String(r.body)
     return read(s)
@@ -130,13 +130,13 @@ end
 """
 Returns a market's order book.
 """
-function getorderbook(exchange::String, pair::String)
+function orderbook(exchange::String, pair::String)
     r = get("$URL/markets/$exchange/$pair/orderbook")
     s = String(r.body)
     return read(s)
 end
 
-function getorderbook(exchange::String, pair::String, limit::Int64, depth::Float64, span::Float64)
+function orderbook(exchange::String, pair::String, limit::Int64, depth::Float64, span::Float64)
     r = get("$URL/markets/$exchange/$pair/orderbook?limit=$limit&depth=$depth&span=$span")
     s = String(r.body)
     return read(s)
@@ -146,7 +146,7 @@ end
 Returns a market's OHLC candlestick data.
 Returns data as lists of lists of numbers for each time period integer.
 """
-function getohlc(exchange::String, pair::String)
+function ohlc(exchange::String, pair::String)
     r = get("$URL/markets/$exchange/$pair/ohlc")
     s = String(r.body)
     return read(s)
