@@ -1,5 +1,6 @@
 module Cryptowatch
 
+    using DataFrames
     using Dates
 
     import HTTP: get

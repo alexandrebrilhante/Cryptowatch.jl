@@ -4,7 +4,8 @@ Returns all assets (in no particular order).
 function getassets()
     r = get("$URL/assets")
     s = String(r.body)
-    return read(s)
+    res = read(s)
+    return DataFrame(res.result)
 end
 
 """
@@ -13,7 +14,7 @@ Returns a single asset. Lists all markets which have this asset as a base or quo
 function getassets(symbol::String)
     r = get("$URL/assets/$symbol")
     s = String(r.body)
-    return JSON2.read(s)
+    return read(s)
 end
 
 """
@@ -40,7 +41,8 @@ Returns a list of all supported exchanges.
 function getexchanges()
     r = get("$URL/exchanges")
     s = String(r.body)
-    return read(s)
+    res = read(s)
+    return DataFrame(res.result)
 end
 
 """
@@ -58,7 +60,8 @@ Returns a list of all supported markets.
 function getmarkets()
     r = get("$URL/markets")
     s = String(r.body)
-    return read(s)
+    res = read(s)
+    return DataFrame(res.result)
 end
 
 """
